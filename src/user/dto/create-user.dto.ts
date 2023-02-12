@@ -3,9 +3,11 @@ import { IsNotEmpty, IsString, MinLength, MaxLength } from 'class-validator';
 export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
+  @MaxLength(30)
   readonly firstname: string;
   @IsNotEmpty()
   @IsString()
+  @MaxLength(30)
   readonly lastname: string;
   @IsNotEmpty()
   @IsString()
