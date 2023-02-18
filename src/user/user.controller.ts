@@ -6,8 +6,6 @@ import {
   Param,
   Delete,
   Put,
-  UseInterceptors,
-  ClassSerializerInterceptor,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';

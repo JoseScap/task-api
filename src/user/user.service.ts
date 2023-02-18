@@ -51,7 +51,7 @@ export class UserService {
     return mapUserDocumentToUserResponse(user);
   }
 
-  async findOneByUsername(username: string): Promise<any> {
+  async findOneByUsername(username: string): Promise<UserDocument> {
     const user: UserDocument = await this.userModel.findOne({ username });
 
     if (!user) return null;
