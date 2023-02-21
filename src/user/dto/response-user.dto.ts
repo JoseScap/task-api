@@ -1,7 +1,5 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { Exclude } from 'class-transformer';
 import { IUser } from '../user.interface';
-import { User } from '../user.schema';
 
 export class UserResponse implements IUser {
   _id: string;

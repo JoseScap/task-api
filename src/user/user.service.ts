@@ -6,12 +6,10 @@ import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { UserResponse } from './dto/response-user.dto';
-import { IUser } from './user.interface';
 import {
   mapUserDocumentsToUserResponses,
   mapUserDocumentToUserResponse,
 } from './user.helper';
-import { response } from 'express';
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
