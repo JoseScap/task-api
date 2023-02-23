@@ -27,8 +27,9 @@ export class TaskController {
   }
 
   @Get()
-  findAll() {
-    return this.taskService.findAll();
+  findAll(@Request() req) {
+    const userId: Types.ObjectId = req.user._id;
+    return this.taskService.findAll(userId);
   }
 
   @Get(':id')

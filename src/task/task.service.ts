@@ -4,7 +4,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task, TaskDocument } from './task.schema';
 import { Model, Types } from 'mongoose';
-import { mapTaskDocumentToTaskResponse } from './task.helper';
+import { mapTaskDocumentsToTaskResponses, mapTaskDocumentToTaskResponse } from './task.helper';
 import { TaskResponse } from './dto/response-task.dto';
 
 @Injectable()
@@ -23,8 +23,9 @@ export class TaskService {
     return mapTaskDocumentToTaskResponse(task);
   }
 
-  findAll() {
-    return `This action returns all task`;
+  async findAll(userId: Types.ObjectId): Promise<TaskResponse[]> {
+    const tasks = await this.taskModel.find({ user: userId });
+    return mapTaskDocumentsToTaskResponses(tasks);
   }
 
   findOne(id: number) {
