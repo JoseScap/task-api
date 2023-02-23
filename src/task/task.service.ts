@@ -4,6 +4,8 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task, TaskDocument } from './task.schema';
 import { Model, Types } from 'mongoose';
+import { mapTaskDocumentToTaskResponse } from './task.helper';
+import { TaskResponse } from './dto/response-task.dto';
 
 @Injectable()
 export class TaskService {
@@ -12,13 +14,13 @@ export class TaskService {
   async create(
     createTaskDto: CreateTaskDto,
     userId: Types.ObjectId,
-  ): Promise<TaskDocument> {
+  ): Promise<TaskResponse> {
     const createdTask: TaskDocument = new this.taskModel({
       ...createTaskDto,
       user: userId,
     });
     const task = await createdTask.save();
-    return task;
+    return mapTaskDocumentToTaskResponse(task);
   }
 
   findAll() {
